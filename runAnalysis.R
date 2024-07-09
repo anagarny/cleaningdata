@@ -32,7 +32,7 @@ run_analysis <- function() {
 
   # Creating an independent tidy data set with the average of each variable
   # for each activity and each subject
-  tidydb <- group_by(mergedSet, SubjectID, Activities) %>%
+  tidydb_mean <- group_by(mergedSet, SubjectID, Activities) %>%
    summarize_all(mean, na.rm = TRUE) %>%
     print()
 }
