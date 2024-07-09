@@ -43,11 +43,33 @@ make.codeBook <- function(set){
         format(round(mean(x),3))
       else
         "Not available")
-) 
+)
+
 
 write.table(df, “codebook.md”, sep = “ | ”)
 }
 ```
-
+```{r}
+db <- data.frame(
+    row.names = NULL,
+    variable = names(tidydb_mean),
+    class = sapply(tidydb_mean, class),
+    range = sapply(tidydb_mean, function(x)
+      if(class(x) == "numeric" ||
+         class(x) == "integer")
+        paste(format(round(min(x),3)), format(round(max(x),3)), sep = "/")
+      else if (class(x) == "factor")
+        paste(levels(x), collapse = " / ")
+      else
+        class (x)),
+    mean = sapply(tidydb_mean, function(x)
+      if(class(x) == "numeric")
+        format(round(mean(x),3))
+      else
+        "Not available")
+)
+library(knitr)
+knitr::kable(db)
+```
 ## The dataset includes the following variables:
 
