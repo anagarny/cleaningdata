@@ -30,7 +30,7 @@ The first part of the code reads the features and activity labels from UCI HAR D
 >features <- read.csv("features.txt", sep = "", header = FALSE)  
 >activity_labels <- read.csv("activity_labels.txt", sep = "", header = FALSE)
 
-In this part, the code is reading files from same location and combining first sets, then labels and finally subject IDs for test and train files with rbind function.  
+In this part, the code is reading files from same location and combining first sets, then activity codes and finally subject IDs for test and train files using the rbind function.  
 >## Reading and combining sets
 >testSet <- read.csv("test/X_test.txt", sep = "", header = FALSE)  
 >trainingSet <- read.csv("train/X_train.txt", sep = "", header = FALSE)  
@@ -46,12 +46,12 @@ In this part, the code is reading files from same location and combining first s
 >trainingSubjectid <- read.csv("train/subject_train.txt", sep = "", header = FALSE)  
 >mergedSubjectid <- rbind(testSubjectid,trainingSubjectid)  
 
-Now, the code assigns column names to the mergedSet and make an extract of the measurements with the words “std” (for standard deviation) or “mean” in their names.  
+Now, the code assigns column names to the mergedSet and makes an extract of the measurements with the words “std” (for standard deviation) or “mean” in their names.  
 >## Extracting mean and standard deviation measurements
 >names(mergedSet) <- features[ ,2]  
 >mergedSet <- mergedSet[ grepl("std|mean", names(mergedSet), ignore.case = TRUE) ]  
 
-This part of the code adds descriptive names for the activities (columns) using the inner_join function from dplyr, this function helps keeping the rows in their original order. 
+This part of the code adds descriptive names for the activities (columns) using the inner_join function from dplyr. This function helps keeping the rows in their original order. 
 >## Adding descriptive activity names with dplyr
 >library(dplyr)  
 >activity_labels <- inner_join(mergedActivities, activity_labels, by ="V1")  
