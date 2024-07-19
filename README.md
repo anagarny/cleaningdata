@@ -64,6 +64,6 @@ Here, the code merges the columns: subject ids, the names of the activities and,
 Finally, the code creates a new independent tidy data set showing the average of each variable breakdown by SubjectID and Activity name.
 
 >## Creating an independent tidy data set with the average of each variable for each activity and each subject
->tidydb_mean <- group_by(mergedSet, SubjectID, Activities) %>%  
+>tidydb <- group_by(mergedSet, SubjectID, Activities) %>%  
 >  summarize_all(mean, na.rm = TRUE) %>%  
 >  print()
