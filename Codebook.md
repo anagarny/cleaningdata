@@ -25,7 +25,7 @@ For each record it is provided:
 ## Script to create the codebook file for tidydb
 ```javascript
 make.codeBook <- function(set){
-   
+  tidydb_mean <- read.csv("tidydb_mean.csv", sep = "", header = FALSE) 
   db <- data.frame(
     row.names = NULL,
     variable = names(tidydb_mean),
