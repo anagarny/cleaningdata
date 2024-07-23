@@ -35,4 +35,5 @@ run_analysis <- function() {
   tidydb_mean <- group_by(mergedSet, SubjectID, Activities) %>%
    summarize_all(mean, na.rm = TRUE) %>%
     print()
+  write.table(tidydb,"tidydb.txt") 
 }
