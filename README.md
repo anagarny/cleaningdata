@@ -59,11 +59,14 @@ This part of the code adds descriptive names for the activities (columns) using 
 Here, the code merges the columns: subject ids, the names of the activities and, the mean and standard deviation measurements, using cbind. Tydying the data set providing clear names for SubjectID and Activities
 >## Creating a tidy data set
 >mergedSet <- cbind(mergedSubjectid, y = activity_labels[,2], mergedSet)  
->names(mergedSet)[1:2] <- c("SubjectID", "Activities")  
+>names(mergedSet)[1:2] <- c("SubjectID", "Activities")
+
 
 Finally, the code creates a new independent tidy data set showing the average of each variable breakdown by SubjectID and Activity name.
+
 
 >## Creating an independent tidy data set with the average of each variable for each activity and each subject
 >tidydb <- group_by(mergedSet, SubjectID, Activities) %>%  
 >  summarize_all(mean, na.rm = TRUE) %>%  
 >  print()
+> write.table(tidydb,"tidydb.txt") 
